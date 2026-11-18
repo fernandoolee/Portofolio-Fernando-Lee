@@ -256,21 +256,21 @@
       </div>
     </div>
 
-    <figure class="fig" id="fig" data-real="false">
+    <figure class="fig" id="fig" data-real="true">
       <span class="c3" aria-hidden="true"></span><span class="c4" aria-hidden="true"></span>
       <div class="fig-media">
         <picture>
           <source srcset="fernando-dither.webp" type="image/webp">
-          <img class="dither" src="fernando-dither.png" alt="Pixel-dithered portrait of Fernando Lee" width="700" height="805">
+          <img class="dither" src="fernando-dither.png" alt="" width="700" height="805" loading="lazy">
         </picture>
         <picture>
           <source srcset="fernando.webp" type="image/webp">
-          <img class="real" src="fernando.png" alt="" width="900" height="1129" loading="lazy">
+          <img class="real" src="fernando.png" alt="Portrait of Fernando Lee" width="900" height="1129" fetchpriority="high">
         </picture>
       </div>
       <figcaption class="fig-cap">
         <span>Fig.01 / portrait · Tangerang, ID</span>
-        <button type="button" id="toggle-photo" aria-pressed="false">Show photo</button>
+        <button type="button" id="toggle-photo" aria-pressed="false">Pixel version</button>
       </figcaption>
     </figure>
   </div>
@@ -571,9 +571,9 @@
   // portrait: dithered <-> real photo
   const fig = document.getElementById('fig'), tgl = document.getElementById('toggle-photo');
   tgl.addEventListener('click', () => {
-    const on = fig.dataset.real !== 'true';
-    fig.dataset.real = on; tgl.setAttribute('aria-pressed', on);
-    tgl.textContent = on ? 'Show pixels' : 'Show photo';
+    const pixels = fig.dataset.real === 'true';
+    fig.dataset.real = !pixels; tgl.setAttribute('aria-pressed', pixels);
+    tgl.textContent = pixels ? 'Show photo' : 'Pixel version';
   });
 
   // project filters
